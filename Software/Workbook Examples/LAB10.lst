@@ -1,0 +1,68 @@
+0001   1800                      .ORG 1800H
+0002   1800                          
+0003   1800             SCAN     .EQU 05FEH
+0004   1800             DATADISP .EQU 0671H  ; A=nn           
+0005   1800             ADDRDISP .EQU 0665H  ; DE=nnnn
+0006   1800             DISPLAYBUF .EQU 1FB6H
+0007   1800             
+0008   1800             TICK     .EQU 2000H
+0009   1800             SEC      .EQU 2001H
+0010   1800             
+0011   1800             
+0012   1800             
+0013   1800             ; main code
+0014   1800             
+0015   1800 21 20 18    MAIN     LD HL,SERVICE
+0016   1803 22 FF 18    	 LD (18FFH),HL ; insert vector
+0017   1806 3E 18       	 LD A,18H
+0018   1808 ED 47       	 LD I,A      ; high order byte
+0019   180A             
+0020   180A ED 5E       	 IM 2
+0021   180C FB          	 EI
+0022   180D             
+0023   180D             ; CLEAR DISPLAY BUFFER         
+0024   180D             	 
+0025   180D 21 B6 1F    	 LD HL,DISPLAYBUF
+0026   1810 06 06       	 LD B,6
+0027   1812 36 00       CLEAR	 LD (HL),0
+0028   1814 23          	 INC HL
+0029   1815 10 FB       	 DJNZ CLEAR
+0030   1817             
+0031   1817 DD 21 B6 1F 	 LD IX,DISPLAYBUF
+0032   181B CD FE 05    LOOP     CALL SCAN
+0033   181E 18 FB       	 JR LOOP
+0034   1820             
+0035   1820             
+0036   1820             ; interrupt service subroutine
+0037   1820             
+0038   1820 E5          SERVICE  PUSH HL
+0039   1821 F5          	 PUSH AF
+0040   1822             
+0041   1822 21 00 20    	 LD HL,TICK
+0042   1825 34          	 INC (HL)
+0043   1826 3A 00 20    	 LD A,(TICK)
+0044   1829 FE 64       	 CP 100
+0045   182B 38 11       	 JR C,SKIP
+0046   182D 3E 00       	 LD A,0
+0047   182F 32 00 20    	 LD (TICK),A
+0048   1832             
+0049   1832                               
+0050   1832 3A 01 20    	 LD A,(SEC)
+0051   1835 D6 01       	 SUB 1
+0052   1837 27          	 DAA
+0053   1838 32 01 20    	 LD (SEC),A
+0054   183B             
+0055   183B CD 71 06    	 CALL DATADISP
+0056   183E             	 
+0057   183E F1          SKIP	 POP AF
+0058   183F E1          	 POP HL
+0059   1840             	 
+0060   1840 FB          	 EI
+0061   1841             	 
+0062   1841 ED 4D       	 RETI
+0063   1843             
+0064   1843             
+0065   1843             
+0066   1843                      .END
+0067   1843                                 
+tasm: Number of errors = 0

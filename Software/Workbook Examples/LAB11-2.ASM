@@ -1,0 +1,36 @@
+         .ORG 1800H
+
+INITLCD   .EQU 0B64H
+PRINTCHAR  .EQU 0CCEH
+PRINTTEXT .EQU 0CC8H
+GOTOXY    .EQU 0CC2H
+CLEAR     .EQU 0B06H
+PRINTHEX  .EQU 0CD4H
+
+
+MAIN      CALL INITLCD
+                  
+	  LD HL,1800H
+	  LD A,H
+	  PUSH HL
+	  CALL PRINTHEX
+	  POP DE
+	  	  
+	  LD A,E
+	  CALL PRINTHEX
+	  LD L,':'
+	  CALL PRINTCHAR
+          
+	  LD B,4
+LOOP	  LD A,(DE)
+	  CALL PRINTHEX
+	  LD L,' '
+	  CALL PRINTCHAR
+
+	  INC DE
+	  DJNZ LOOP
+	  
+	  RST 38H
+
+         .END
+                    

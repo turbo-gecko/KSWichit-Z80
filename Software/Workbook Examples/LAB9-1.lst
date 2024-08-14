@@ -1,0 +1,23 @@
+0001   1800                      .ORG 1800H
+0002   1800                          
+0003   1800             SCAN    .EQU  05FEH
+0004   1800             HEX7SEG  .EQU 0678H
+0005   1800             
+0006   1800 DD 21 0F 18 MAIN    LD IX,BUFFER
+0007   1804             
+0008   1804 CD FE 05    LOOP    CALL SCAN
+0009   1807                   
+0010   1807 21 0F 18    SKIP	LD HL,BUFFER
+0011   180A CD 78 06    	CALL HEX7SEG
+0012   180D 18 F5       	JR LOOP
+0013   180F             
+0014   180F 00          BUFFER  .BYTE 0
+0015   1810 00                  .BYTE 0
+0016   1811 00          	.BYTE 0
+0017   1812 00          	.BYTE 0
+0018   1813 00          	.BYTE 0
+0019   1814 00          	.BYTE 0
+0020   1815             
+0021   1815             	.END
+0022   1815                                 
+tasm: Number of errors = 0

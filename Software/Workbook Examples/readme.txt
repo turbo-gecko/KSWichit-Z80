@@ -1,0 +1,12 @@
+The source code of assembly programs shown in the Z80 Programming Lab Book are assembled with TASM assembler.
+
+To run the assembler, under DOS prompt command line, type
+
+D:\tasm\tasm -80 lab1.asm
+
+The assembler will produce the object file and listing file. Object file is standard Intel HEX file.
+
+The hex file can be downloaded to the Z80 kit by teraterminal, 2400 bit/s, 8-data bit, no parity, one stop bit.
+
+The listing file includes Z80 instructions in hex code, students may enter the program with hex code to the memory directly.
+

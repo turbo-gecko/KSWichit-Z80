@@ -1,0 +1,19 @@
+0001   1800                      .ORG 1800H
+0002   1800             
+0003   1800             GPIO1     .EQU 40H
+0004   1800             TONE2K    .EQU 05E2H
+0005   1800              
+0006   1800 21 64 00    MAIN      LD HL,100
+0007   1803 CD E2 05              CALL TONE2K
+0008   1806 CD 0C 18    	  CALL DELAY
+0009   1809 C3 00 18    	  JP MAIN
+0010   180C             
+0011   180C 11 FF FF    DELAY     LD DE,-1
+0012   180F 21 00 10    	  LD HL,1000H
+0013   1812 19          LOOP2	  ADD HL,DE
+0014   1813 38 FD       	  JR C,LOOP2
+0015   1815 C9          	  RET
+0016   1816             
+0017   1816                      .END
+0018   1816                                 
+tasm: Number of errors = 0

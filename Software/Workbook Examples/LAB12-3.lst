@@ -1,0 +1,35 @@
+0001   1800                      .ORG 1800H
+0002   1800             
+0003   1800             INITLCD   .EQU 0B64H
+0004   1800             PRINTCHAR  .EQU 0CCEH
+0005   1800             GOTOXY    .EQU 0CC2H
+0006   1800             CLEAR     .EQU 0B06H
+0007   1800             
+0008   1800             CIN       .EQU 08B9H
+0009   1800             COUT      .EQU 0861H
+0010   1800             CR        .EQU 0DH
+0011   1800             ESC       .EQU 1BH
+0012   1800              
+0013   1800             
+0014   1800 CD 64 0B    MAIN	  CALL INITLCD
+0015   1803             
+0016   1803 CD B9 08    LOOP	  CALL CIN
+0017   1806 FE 0D                 CP CR
+0018   1808 20 08       	  JR NZ,SKIP1
+0019   180A 21 00 01    	  LD HL,0100H
+0020   180D CD C2 0C    	  CALL GOTOXY
+0021   1810 18 0D       	  JR SKIP3
+0022   1812             
+0023   1812 FE 1B       SKIP1	  CP ESC
+0024   1814 20 05                 JR NZ,SKIP2
+0025   1816 CD 06 0B    	  CALL CLEAR
+0026   1819 18 04       	  JR SKIP3
+0027   181B             
+0028   181B 6F          SKIP2     LD L,A
+0029   181C CD CE 0C    	  CALL PRINTCHAR
+0030   181F             
+0031   181F 18 E2       SKIP3	  JR LOOP
+0032   1821             	  
+0033   1821             	  .END
+0034   1821                                 
+tasm: Number of errors = 0

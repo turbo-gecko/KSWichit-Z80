@@ -1,0 +1,30 @@
+0001   1800                      .ORG 1800H
+0002   1800             
+0003   1800             PSTRING   .EQU 0852H
+0004   1800             CIN       .EQU 08B9H
+0005   1800             COUT      .EQU 0861H
+0006   1800             OUT2X     .EQU 0875H
+0007   1800             NEWLINE   .EQU 088CH
+0008   1800             DELAY     .EQU 0CE1H
+0009   1800              
+0010   1800             
+0011   1800 CD 10 18    START	  CALL INIT ; SET UART AT MARK LEVEL
+0012   1803             
+0013   1803 CD 8C 08    MAIN      CALL NEWLINE
+0014   1806 DD 21 19 18           LD IX,HELLO
+0015   180A CD 52 08    	  CALL PSTRING
+0016   180D C3 03 18    	  JP MAIN
+0017   1810             
+0018   1810 3E FF       INIT      LD A,0FFH
+0019   1812 CD 61 08              CALL COUT
+0020   1815 CD E1 0C    	  CALL DELAY
+0021   1818 C9          	  RET
+0022   1819             
+0023   1819 48 65 6C 6C HELLO     .BYTE "Hello worlds",0
+0023   181D 6F 20 77 6F 
+0023   1821 72 6C 64 73 
+0023   1825 00 
+0024   1826                       
+0025   1826                      .END
+0026   1826                                 
+tasm: Number of errors = 0

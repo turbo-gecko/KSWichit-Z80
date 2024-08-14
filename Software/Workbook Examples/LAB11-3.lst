@@ -1,0 +1,26 @@
+0001   1800                      .ORG 1800H
+0002   1800             
+0003   1800             INITLCD   .EQU 0B64H
+0004   1800             GOTOXY    .EQU 0CC2H
+0005   1800             PRINTINT  .EQU 0CDBH
+0006   1800             DELAY     .EQU 0CE1H
+0007   1800             
+0008   1800 CD 64 0B    MAIN      CALL INITLCD
+0009   1803                      	  	   
+0010   1803 21 00 00    	  LD HL,0
+0011   1806                       
+0012   1806 E5          LOOP	  PUSH HL
+0013   1807 CD DB 0C    	  CALL PRINTINT
+0014   180A CD E1 0C    	  CALL DELAY
+0015   180D                       
+0016   180D 21 00 00    	  LD HL,0
+0017   1810 CD C2 0C    	  CALL GOTOXY	  
+0018   1813             		  
+0019   1813 E1          	  POP HL
+0020   1814 23          	  INC HL
+0021   1815             	  
+0022   1815 C3 06 18    	  JP LOOP
+0023   1818             	  
+0024   1818                      .END
+0025   1818                                 
+tasm: Number of errors = 0

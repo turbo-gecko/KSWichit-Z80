@@ -1,0 +1,42 @@
+0001   1800                      .ORG 1800H
+0002   1800             
+0003   1800             BUFFER    .EQU 2000H
+0004   1800             SCAN1     .EQU 0624H
+0005   1800             HEX7SEG   .EQU 0678H
+0006   1800              
+0007   1800 DD 21 00 20 MAIN      LD IX,BUFFER
+0008   1804 11 00 00    	  LD DE,0
+0009   1807             
+0010   1807 CD 24 06    LOOP      CALL SCAN1
+0011   180A 38 0B                 JR C, SKIP
+0012   180C FE 18                 CP 18H ; KEY CBR
+0013   180E 20 F7       	  JR NZ,LOOP
+0014   1810             
+0015   1810 11 00 00    	  LD DE,0
+0016   1813 3E 00       	  LD A,0
+0017   1815 18 09       	  JR SKIP2
+0018   1817             
+0019   1817 7B          SKIP	  LD A,E
+0020   1818 C6 01       	  ADD A,1
+0021   181A 27          	  DAA
+0022   181B 5F          	  LD E,A
+0023   181C 7A          	  LD A,D
+0024   181D CE 00       	  ADC A,0
+0025   181F 27          	  DAA
+0026   1820             
+0027   1820 57          SKIP2	  LD D,A
+0028   1821 7B          	  LD A,E
+0029   1822             
+0030   1822 21 00 20    	  LD HL,BUFFER
+0031   1825 CD 78 06    	  CALL HEX7SEG
+0032   1828 36 02       	  LD (HL),2
+0033   182A 23          	  INC HL
+0034   182B 7A          	  LD A,D
+0035   182C CD 78 06    	  CALL HEX7SEG
+0036   182F 36 00       	  LD (HL),0
+0037   1831             
+0038   1831 C3 07 18    	  JP LOOP
+0039   1834                     
+0040   1834             	  .END
+0041   1834                                 
+tasm: Number of errors = 0

@@ -1,0 +1,46 @@
+0001   1800                      .ORG 1800H
+0002   1800                          
+0003   1800             GPIO1    .EQU 40H
+0004   1800             TICK     .EQU 2000H
+0005   1800             COUNTER  .EQU 2001H
+0006   1800             
+0007   1800             ; main code
+0008   1800             
+0009   1800 21 0E 18    MAIN     LD HL,SERVICE
+0010   1803 22 FF 18    	 LD (18FFH),HL ; insert vector
+0011   1806 3E 18       	 LD A,18H
+0012   1808 ED 47       	 LD I,A      ; high order byte
+0013   180A             
+0014   180A ED 5E       	 IM 2
+0015   180C FB          	 EI
+0016   180D             
+0017   180D FF                   RST 38H
+0018   180E             
+0019   180E             ; interrupt service subroutine
+0020   180E             
+0021   180E E5          SERVICE  PUSH HL
+0022   180F F5          	 PUSH AF
+0023   1810             	
+0024   1810 21 00 20    	 LD HL,TICK
+0025   1813 34          	 INC (HL)
+0026   1814 3A 00 20    	 LD A,(TICK)
+0027   1817 FE 64       	 CP 100
+0028   1819 38 10       	 JR C,SKIP
+0029   181B 3E 00       	 LD A,0
+0030   181D 32 00 20    	 LD (TICK),A
+0031   1820             
+0032   1820 3A 01 20    	 LD A,(COUNTER)
+0033   1823 C6 01       	 ADD A,1
+0034   1825 27          	 DAA
+0035   1826 32 01 20    	 LD (COUNTER),A
+0036   1829 D3 40       	 OUT (GPIO1),A
+0037   182B             
+0038   182B F1          SKIP	 POP AF
+0039   182C E1          	 POP HL
+0040   182D             	 
+0041   182D FB          	 EI
+0042   182E ED 4D       	 RETI
+0043   1830             
+0044   1830                     .END
+0045   1830                                 
+tasm: Number of errors = 0

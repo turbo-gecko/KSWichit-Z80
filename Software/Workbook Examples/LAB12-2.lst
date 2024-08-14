@@ -1,0 +1,53 @@
+0001   1800                      .ORG 1800H
+0002   1800             
+0003   1800             PSTRING   .EQU 0852H
+0004   1800             CIN       .EQU 08B9H
+0005   1800             COUT      .EQU 0861H
+0006   1800             OUT2X     .EQU 0875H
+0007   1800             NEWLINE   .EQU 088CH
+0008   1800             ONESPACE  .EQU 0897H
+0009   1800             DELAY     .EQU 0CE1H
+0010   1800              
+0011   1800             
+0012   1800 CD 2C 18    START	  CALL INIT ; SET UART AT MARK LEVEL
+0013   1803 21 00 18              LD HL,1800H
+0014   1806                       
+0015   1806 06 04       	  LD B,4
+0016   1808             
+0017   1808 C5          LOOP	  PUSH BC
+0018   1809 CD 10 18    	  CALL HEXDUMP
+0019   180C C1          	  POP BC
+0020   180D 10 F9       	  DJNZ LOOP
+0021   180F             
+0022   180F FF          	  RST 38H
+0023   1810             
+0024   1810             
+0025   1810             
+0026   1810 CD 8C 08    HEXDUMP   CALL NEWLINE
+0027   1813 7C                    LD A,H
+0028   1814 CD 75 08              CALL OUT2X
+0029   1817 7D          	  LD A,L
+0030   1818 CD 75 08              CALL OUT2X
+0031   181B CD 97 08              CALL ONESPACE
+0032   181E                      	    
+0033   181E 0E 10                 LD C,16
+0034   1820                     
+0035   1820 CD 97 08    HEXDUMP2    CALL ONESPACE
+0036   1823 7E                    LD A,(HL)
+0037   1824 CD 75 08              CALL OUT2X
+0038   1827 23                    INC HL
+0039   1828                         
+0040   1828 0D                    DEC C
+0041   1829 20 F5                 JR NZ,HEXDUMP2
+0042   182B C9                    RET
+0043   182C             
+0044   182C             
+0045   182C             
+0046   182C 3E FF       INIT      LD A,0FFH
+0047   182E CD 61 08              CALL COUT
+0048   1831 CD E1 0C    	  CALL DELAY
+0049   1834 C9          	  RET
+0050   1835             
+0051   1835                      .END
+0052   1835                                 
+tasm: Number of errors = 0

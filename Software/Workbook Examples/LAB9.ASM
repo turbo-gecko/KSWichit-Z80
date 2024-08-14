@@ -1,0 +1,24 @@
+         .ORG 1800H
+             
+SCAN1    .EQU 0624H
+HEX7SEG  .EQU 0678H
+
+MAIN    LD IX,BUFFER
+
+LOOP    CALL SCAN1
+        JR NC,SKIP
+	LD A,0FFH
+
+SKIP	LD HL,BUFFER
+	CALL HEX7SEG
+	JR LOOP
+
+BUFFER  .BYTE 0
+        .BYTE 0
+	.BYTE 0
+	.BYTE 0
+	.BYTE 0
+	.BYTE 0
+
+	.END
+                    

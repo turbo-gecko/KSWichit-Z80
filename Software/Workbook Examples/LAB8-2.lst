@@ -1,0 +1,22 @@
+0001   1800                      .ORG 1800H
+0002   1800                          
+0003   1800             SCANDISP .EQU 0624H
+0004   1800             DATADISP .EQU 0671H  ; A=nn           
+0005   1800             ADDRDISP .EQU 0665H  ; DE=nnnn
+0006   1800             DISPLAYBUF .EQU 1FB6H
+0007   1800             
+0008   1800             ; main code
+0009   1800             
+0010   1800 3A 00 20    MAIN     LD A,(2000H)
+0011   1803 CD 71 06             CALL DATADISP
+0012   1806             	 
+0013   1806 ED 5B 01 20 	 LD DE,(2001H)
+0014   180A CD 65 06    	 CALL ADDRDISP
+0015   180D             
+0016   180D DD 21 B6 1F          LD IX,DISPLAYBUF
+0017   1811 CD 24 06    LOOP     CALL SCANDISP
+0018   1814 18 FB       	 JR LOOP
+0019   1816             
+0020   1816                      .END
+0021   1816                                 
+tasm: Number of errors = 0
