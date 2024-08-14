@@ -4,6 +4,9 @@ Collection of software for the Z80 kit.
 ## Example code
 Basic example code for the Z80 kit.
 
+## Workbook Examples
+Code from the lab book for the Z80 kit.
+
 ## Software for the MPF-1 that can be compiled for the Z80 Kit
 
 ### Hex Load
