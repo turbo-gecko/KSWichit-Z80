@@ -1,5 +1,10 @@
 # ROM
 
+## ROM 2024-08-15
+
+Changes:
+- Minor change to Hex Load to enable graceful exit when calling from another program.
+
 ## ROM 2024-08-14
 
 Changes:
