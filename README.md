@@ -1,8 +1,8 @@
 # KS Wichit Z80 Microprocessor Kit
 
-The KS Wichit Z80 Microprocessor Kit is a modern retro re-imagining of the Z80 kit microprocessor trainer. The home page for the Z80 kit is https://kswichit.net/Z80/Z80.html
+The KS Wichit Z80 Microprocessor Kit is a modern retro re-imagining of the MPF-1 microprocessor trainer. The home page for the Z80 kit is https://kswichit.net/Z80/Z80.html
 
-After expanding my original Z80 kit, I figured I could do the same for the Z80 kit. I would use the same/similar expansion bus and cards as the Z80 kit, but would need a specialised adapter to connect to the kit.
+After expanding my original MPF-1, I figured I could do the same for the Z80 kit. I would use the same/similar expansion bus and cards as the MPF-1, but would need a specialised adapter to connect to the Z80 kit.
 
 This repo is for the hardware and software I have developed for the Z80 kit to expand and improve the Z80 kits useability.
 
