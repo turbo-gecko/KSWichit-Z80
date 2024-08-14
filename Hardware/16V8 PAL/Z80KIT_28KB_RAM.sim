@@ -1,0 +1,78 @@
+%SIGNAL
+PIN   1 =  A0 
+PIN  11 =  A1 
+PIN   4 =  A6 
+PIN   5 =  A7 
+PIN   6 =  A12 
+PIN   7 =  A13 
+PIN   8 =  A14 
+PIN   9 =  A15 
+PIN  14 =  GPIO1 
+PIN   3 =  IORQ 
+PIN  16 =  LCD_E 
+PIN   2 =  MREQ 
+PIN  17 =  PORT0 
+PIN  18 =  PORT1 
+PIN  19 =  PORT2 
+PIN  13 =  RAMCE 
+PIN  12 =  ROMCE 
+PIN  15 =  SCLK 
+%END
+
+%FIELD
+%END
+
+%EQUATION
+GPIO1 =>
+    IORQ
+  # !A6
+  # A7
+  # A0
+  # A1
+
+!LCD_E =>
+    IORQ
+  # A6
+  # !A7
+
+PORT0 =>
+    IORQ
+  # A6
+  # A7
+  # A0
+  # A1
+
+PORT1 =>
+    IORQ
+  # A6
+  # A7
+  # !A0
+  # A1
+
+PORT2 =>
+    IORQ
+  # A6
+  # A7
+  # A0
+  # !A1
+
+RAMCE =>
+    !A12 & !A13 & !A14
+  # A15
+  # MREQ
+
+ROMCE =>
+    A12
+  # A13
+  # A14
+  # A15
+  # MREQ
+
+SCLK =>
+    IORQ
+  # !A6
+  # !A7
+  # A0
+  # A1
+
+%END
