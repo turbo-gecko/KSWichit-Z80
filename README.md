@@ -40,7 +40,7 @@ To store and load files using an SD card only requires an I/O card and an Adafru
 ### Optional ROM upgrade
 This is an optional step to enable the faster hex file downloading from within the ROM. It is not required, as the onbaord hex loader can be used.
 
-There is a ROM image at https://github.com/turbo-gecko/KSWichit-Z80/tree/main/Hardware/ROM%20with%20Hex-Load containing the original ROM plus the hex-load program at 0DD0H that uses the high speed serial card.
+The ROMs at https://github.com/turbo-gecko/KSWichit-Z80/tree/main/Hardware/ROM contain the hex-load program at 0DD0H that uses the high speed serial card.
 
 Burn the binary image to a 27C256 EPROM and replace the existing ROM the Z80 kit.
 
