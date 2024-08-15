@@ -13,3 +13,6 @@ Changes:
 - LCD initialises at boot with intro message.
 - High Speed Hex Load at 0DD0H.
 
+## ROM Original
+
+This is the original ROM that shipped with my Z80 Microprocessor Kit.
