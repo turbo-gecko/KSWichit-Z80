@@ -1,0 +1,21 @@
+0001   1800                      .ORG 1800H
+0002   1800             
+0003   1800             GPIO1     .EQU 40H   
+0004   1800              
+0005   1800 3E 01       MAIN      LD A,1
+0006   1802             
+0007   1802 D3 40       LOOP	  OUT (GPIO1),A
+0008   1804 CD 0C 18              CALL DELAY
+0009   1807 CB 07       	  RLC A
+0010   1809 C3 02 18              JP LOOP
+0011   180C             	  
+0012   180C             
+0013   180C 11 FF FF    DELAY     LD DE,-1
+0014   180F 21 00 10    	  LD HL,1000H
+0015   1812 19          LOOP2	  ADD HL,DE
+0016   1813 38 FD       	  JR C,LOOP2
+0017   1815 C9          	  RET
+0018   1816             
+0019   1816                      .END
+0020   1816                                 
+tasm: Number of errors = 0
