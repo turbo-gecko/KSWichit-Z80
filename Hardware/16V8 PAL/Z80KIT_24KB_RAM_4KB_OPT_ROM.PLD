@@ -1,0 +1,50 @@
+Name     Z80Kit ;
+PartNo   16V8 ;
+Date     12/1/2014 ;
+Revision 01 ;
+Designer Engineer ;
+Company  Fangkhao ;
+Assembly None ;
+Location  ;
+Device   g16v8a;
+
+/* *************** INPUT PINS *********************/
+PIN 2    =     MREQ;                   
+PIN 3    =     IORQ;                   
+PIN 4    =     A6;                    
+PIN 5    =     A7;                    
+PIN 6    =     A12;                   
+PIN 7    =     A13;                    
+PIN 8    =     A14;                   
+PIN 9    =     A15;                   
+PIN 1    =     A0;                   
+PIN 11    =    A1;                     
+
+/* *************** OUTPUT PINS *********************/
+PIN  12   =   ROMCE;                     
+PIN  13   =   RAMCE;                      
+PIN  14   =   GPIO1;                       
+PIN  15   =   SCLK;                      
+PIN  16   =   LCD_E;                     
+PIN  17   =   PORT0;                     
+PIN  18   =   PORT1;                     
+PIN  19   =   PORT2;                      
+
+ROMCE = ((A12 # A13 # A14 # A15)&(A12 # !A13 # A14 # A15)) # MREQ;
+  
+RAMCE = ((!A12 # A13 # A14 # A15)&(!A12 # !A13 # A14 # A15)&(A12 # A13 # !A14 # A15)&(!A12 # A13 # !A14 # A15) &(A12 # !A13 # !A14 # A15)&(!A12 # !A13 # !A14 # A15)) # MREQ;
+
+GPIO1 = IORQ # !A6 # A7 # A0 # A1;
+
+SCLK = IORQ # !A6 # !A7 # A0 #A1;
+ 
+!LCD_E = IORQ # A6 # !A7;
+
+PORT0 = IORQ # A6 # A7 # A0 # A1;
+
+PORT1 = IORQ # A6 # A7 # !A0 # A1;
+
+PORT2 = IORQ # A6 # A7 # A0 # !A1;
+
+
+
