@@ -23,7 +23,7 @@ PORT_1		.equ	40h
 		.org 	1800h		; Where to load the program in memory
 
 MAIN:
-	ld	a,03h			; Disk number
+	ld	a,00h			; Disk number
 	ld	bc,0000h		; Slot number
 
 	rst	20h			; Call the SD load function
